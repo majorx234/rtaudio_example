@@ -24,6 +24,10 @@ set(SQUARE_WAVE_GENERATOR_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/square_wave_generator.cpp
   )
 
+set(TRIANGLE_WAVE_GENERATOR_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/triangle_wave_generator.cpp
+  )
+
 
 set(PLOT_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/plot_wave.cpp
@@ -38,6 +42,10 @@ add_executable(saw_wave_generator
 
 add_executable(square_wave_generator
   ${SQUARE_WAVE_GENERATOR_SOURCES})
+
+
+add_executable(triangle_wave_generator
+  ${TRIANGLE_WAVE_GENERATOR_SOURCES})
 
 add_executable(plot_wave
   ${PLOT_WAVE_SOURCES})

@@ -19,14 +19,19 @@
 #define END 44100
 
 int main() {
-  unsigned int n = 0;
+  unsigned int offset = 400;
+  unsigned int n = offset;
   unsigned int max = END/441;
   float fmax = static_cast<float>(max);
   float s = 0;
+  float factor = 1.0;
   
-  while(n < END) {
+  while(n < END + offset) {
     //s = ((n % (2*max)) / fmax)-1;
-    s = ((n % (2 * max)) / fmax) - 1;
+    if((n % (2 * max)) == 0){
+      factor *= -1.0;
+    }
+    s = factor * (((n % (2 * max)) / fmax) - 1);
     printf("%f \n", s);
     n++;
   }
