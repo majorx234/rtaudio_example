@@ -15,20 +15,31 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "RtAudio.h"
+#include <stdio.h>
+#include <math.h> /* needed for round() function */
 
-int main() {
-  RtAudio *audio = 0;
+int main(int argc, char *argv[]) {
+  float sample;
+  int i = 0;
+  int s;
+  int nsampl = 0;
 
-  // Default RtAudio constructor
-  try {
-    audio = new RtAudio();
+  do {
+    /* read in float value between -1 and 1 */
+    i = scanf("%f" , &sample);
+    /* scale to get value between 0 and 100 */
+    s = static_cast<int>(round((sample+1) * 50));
+    printf("[%5d]",nsampl );
+    nsampl++;
+    while( s > 0) {
+      printf("-");
+      s = s-1;
+    }
+    printf("*\n");
   }
-  catch (RtAudioError &error) {
-    // Handle the exception here
-    error.printMessage();
-  }
-
-  // Clean up
-  delete audio;
+  while(i != EOF);    
+  
+  return 0;
 }
+
+                     

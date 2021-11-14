@@ -15,20 +15,21 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "RtAudio.h"
+#include <stdio.h>
+#define END 44100
 
 int main() {
-  RtAudio *audio = 0;
-
-  // Default RtAudio constructor
-  try {
-    audio = new RtAudio();
+  unsigned int n = 0;
+  unsigned int max = END/441;
+  float fmax = static_cast<float>(max);
+  float s = 1.0f;
+  
+  while(n < END) {
+    if((n % max) == 0) {
+      s *= -1.0f;
+    }
+    printf("%f \n", s);
+    n++;
   }
-  catch (RtAudioError &error) {
-    // Handle the exception here
-    error.printMessage();
-  }
-
-  // Clean up
-  delete audio;
+  return 0;
 }

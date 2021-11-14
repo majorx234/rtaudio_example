@@ -16,8 +16,30 @@ set(MAIN_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
   )
 
+set(SAW_WAVE_GENERATOR_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/saw_wave_generator.cpp
+  )
+
+set(SQUARE_WAVE_GENERATOR_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/square_wave_generator.cpp
+  )
+
+
+set(PLOT_WAVE_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/plot_wave.cpp
+  )
+
+
 add_executable(rtaudio_example
   ${MAIN_SOURCES})
 
+add_executable(saw_wave_generator
+  ${SAW_WAVE_GENERATOR_SOURCES})
+
+add_executable(square_wave_generator
+  ${SQUARE_WAVE_GENERATOR_SOURCES})
+
+add_executable(plot_wave
+  ${PLOT_WAVE_SOURCES})
 
 target_link_libraries(rtaudio_example PRIVATE ${RTAUDIO_LIBRARIES})
