@@ -24,6 +24,10 @@ set(SQUARE_WAVE_GENERATOR_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/square_wave_generator.cpp
   )
 
+set(INVERSE_SAW_WAVE_GENERATOR_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/inverse_saw_wave_generator.cpp
+  )
+
 set(TRIANGLE_WAVE_GENERATOR_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/triangle_wave_generator.cpp
   )
@@ -40,9 +44,11 @@ add_executable(rtaudio_example
 add_executable(saw_wave_generator
   ${SAW_WAVE_GENERATOR_SOURCES})
 
+add_executable(inverse_saw_wave_generator
+  ${INVERSE_SAW_WAVE_GENERATOR_SOURCES})
+
 add_executable(square_wave_generator
   ${SQUARE_WAVE_GENERATOR_SOURCES})
-
 
 add_executable(triangle_wave_generator
   ${TRIANGLE_WAVE_GENERATOR_SOURCES})
