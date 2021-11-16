@@ -7,11 +7,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${PROJECT_SOURCE_DIR}/cmake")
 
 find_package(RtAudio REQUIRED)
-
+find_package(PulseAudio REQUIRED)
 
 include_directories(${PROJECT_INCLUDE_DIR})
 include_directories(${RTAUDIO_INCLUDE_DIR})
-
+include_directories(${PULSEAUDIO_INCLUDE_DIR})
+message("test"${PULSEAUDIO_LIBRARY}" "${PULSEAUDIO_SIMPLE_LIBRARY})
 set(MAIN_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
   )
@@ -32,11 +33,25 @@ set(TRIANGLE_WAVE_GENERATOR_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/triangle_wave_generator.cpp
   )
 
+set(TRIANGLE_WAVE_GENERATOR2_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/triangle_wave_generator2.cpp
+  )
+
+set(SINE_WAVE_GENERATOR_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/sine_wave_generator.cpp
+  )
 
 set(PLOT_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/plot_wave.cpp
   )
 
+set(ADSR_MODIFICATOR_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/adsr_modificator.cpp
+  )
+
+set(PLAY_WAVE_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/play_wave.cpp
+  )
 
 add_executable(rtaudio_example
   ${MAIN_SOURCES})
@@ -53,7 +68,22 @@ add_executable(square_wave_generator
 add_executable(triangle_wave_generator
   ${TRIANGLE_WAVE_GENERATOR_SOURCES})
 
+add_executable(triangle_wave_generator2
+  ${TRIANGLE_WAVE_GENERATOR2_SOURCES})
+
+add_executable(sine_wave_generator
+  ${SINE_WAVE_GENERATOR_SOURCES})
+
 add_executable(plot_wave
   ${PLOT_WAVE_SOURCES})
 
+add_executable(adsr_modificator
+  ${ADSR_MODIFICATOR_SOURCES})
+
+add_executable(play_wave
+  ${PLAY_WAVE_SOURCES})
+
 target_link_libraries(rtaudio_example PRIVATE ${RTAUDIO_LIBRARIES})
+target_link_libraries(play_wave PRIVATE
+	${PULSEAUDIO_LIBRARY}
+	${PULSEAUDIO_SIMPLE_LIBRARY})

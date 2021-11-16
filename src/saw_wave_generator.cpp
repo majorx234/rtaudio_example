@@ -16,17 +16,23 @@
  */
 
 #include <stdio.h>
-#define END 44100
+#include <stdlib.h>
 
-int main() {
+int main(int argc, char *argv[])
+{
+  unsigned int duration = atoi(argv[1]);
+  unsigned int freq = atoi(argv[2]);
+  const unsigned int sample_rate = 48000;
+  unsigned int end = sample_rate * duration;
   unsigned int n = 0;
-  unsigned int max = END/441;
+  unsigned int max = 48000/freq; //->480
+
   float fmax = static_cast<float>(max);
   float s = 0;
-  
-  while(n < END) {
-    //s = ((n % (2*max)) / fmax)-1;
-    s = ((n % (2 * max)) / fmax) - 1;
+
+  printf("%d\n",end);
+  while(n < end) {
+    s = ((n % (max)) / fmax) - 1;
     printf("%f \n", s);
     n++;
   }

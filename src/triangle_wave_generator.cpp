@@ -16,12 +16,12 @@
  */
 
 #include <stdio.h>
-#define END 44100
+#define END 48000
 
 int main() {
   unsigned int offset = 400;
   unsigned int n = offset;
-  unsigned int max = END/441;
+  unsigned int max = END/480;
   float fmax = static_cast<float>(max);
   float s = 0;
   float factor = 1.0;
