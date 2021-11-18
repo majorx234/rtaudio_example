@@ -22,10 +22,10 @@
 
 int main(int argc, char *argv[])
 {
-  unsigned int duration = atoi(argv[1]);
+  float  duration = atof(argv[1]);
   unsigned int freq  = atoi(argv[2]);
   const unsigned int sample_rate = 48000;
-  unsigned int end = sample_rate * duration ;
+  unsigned int end = static_cast<int>(sample_rate * duration);
   unsigned int n = 0;
 
   float s = 0;

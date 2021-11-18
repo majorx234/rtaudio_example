@@ -65,19 +65,9 @@ int playback(float* in_audio, size_t size, char *argv[]) {
      printf("pa_simple_new() failed: %s\n", pa_strerror(error));
   }
   
-  int j = 0;
-  /*
-  while (j<(48000/BUFSIZE))  {
-    uint8_t buf[BUFSIZE];
-    for(int i = 0;i<BUFSIZE;i++)
-      buf[i] =  in_audio[j*BUFSIZE + i];
-  */  
-    if(pa_simple_write(stream, in_audio, size, &error) < 0){
+  if(pa_simple_write(stream, in_audio, size * sizeof(float) , &error) < 0){
       printf("pa_simple_write() failed: %s \n", pa_strerror(error) );
-    }
-    /*  
-    j++;
-    }*/
+  }
   /* Make sure that every single sample was played */
   if (pa_simple_drain(stream, &error) < 0) {
    printf("pa_simple_drain() failed: %s\n", pa_strerror(error));

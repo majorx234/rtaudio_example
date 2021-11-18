@@ -102,10 +102,10 @@ int main(int argc, char *argv[])
 {
   size_t size = 0;
   float* in_audio = einlesen(&size);
-  float ta = 0.1f;
-  float td = 0.2f;
-  float ts = 0.5f;
-  float tr = 0.2f;
+  float ta = 0.05f;
+  float td = 0.25f;
+  float ts = 0.6f;
+  float tr = 0.1f;
   float* adsr_modification = generate_adsr_modificator(size, ta, td, ts, tr);
   unsigned int duration = size/48000;
   float* adsr_multiplication_result = adsr_multiplication(in_audio, adsr_modification, size);
