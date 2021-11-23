@@ -45,6 +45,10 @@ set(PLOT_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/plot_wave.cpp
   )
 
+set(PLOT2_WAVE_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/plot2_wave.cpp
+  )
+
 set(ADSR_MODIFICATOR_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/adsr_modificator.cpp
   )
@@ -76,6 +80,9 @@ add_executable(sine_wave_generator
 
 add_executable(plot_wave
   ${PLOT_WAVE_SOURCES})
+
+add_executable(plot2_wave
+  ${PLOT2_WAVE_SOURCES})
 
 add_executable(adsr_modificator
   ${ADSR_MODIFICATOR_SOURCES})

@@ -20,13 +20,16 @@
 
 int main(int argc, char *argv[]) {
   float sample;
-  int i = 0;
+  const unsigned int sample_rate = 48000;
+  unsigned int samples;
+  float duration = 0.0f; 
+  int err = 0;
   int s;
   int nsampl = 0;
-
+  err = scanf("%d", &samples);
   do {
     /* read in float value between -1 and 1 */
-    i = scanf("%f" , &sample);
+    err = scanf("%f" , &sample);
     /* scale to get value between 0 and 100 */
     s = static_cast<int>(round((sample+1) * 50));
     printf("[%5d]",nsampl );
@@ -37,7 +40,7 @@ int main(int argc, char *argv[]) {
     }
     printf("*\n");
   }
-  while(i != EOF);    
+  while(err != EOF);    
   
   return 0;
 }

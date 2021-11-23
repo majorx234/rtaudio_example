@@ -17,7 +17,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
+#include <math.h> /* sin */
 #define _USE_MATH_DEFINES
 
 int main(int argc, char *argv[])

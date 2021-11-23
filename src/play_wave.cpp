@@ -15,13 +15,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <pulse/pulseaudio.h>
+#include <pulse/simple.h>
+
+#include <cstring>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
-#include <cstring>
 
-#include <pulse/pulseaudio.h>
-#include <pulse/simple.h>
 
 // #include <pulse/rtclock.h> // zukunftslaura und marc werden sich freuen
 #define BUFSIZE 1000
@@ -48,15 +49,18 @@ float* einlesen(size_t* size) {
       j++;
     }
     // Einfügen! abbruch wenn speicher voll
-  } while (i != EOF);
+  } while ((i != EOF) && (j<num_samples));
   printf("j: %d samples\n",j );
   *size = num_samples;
   return result;
 }
 
 int playback(float* in_audio, size_t size, char *argv[]) {
-  // pacmd list-sources | grep -e 'index:' -e device.string -e 'name:'   
-  const char *device = "alsa_output.pci-0000_00_1b.0.analog-stereo";
+  // need a autochoose default device
+  // pacmd list-sources | grep -e 'index:' -e device.string -e 'name:'
+  const char *device = "alsa_output.pci-0000_00_1f.3.analog-stereo";
+  // diffrent device
+  //  const char *device = "alsa_output.pci-0000_00_1b.0.analog-stereo";
   pa_simple *stream = NULL;;
   int error;
   
