@@ -9,6 +9,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${PROJECT_SOURCE_DIR}/cmake")
 find_package(RtAudio REQUIRED)
 find_package(PulseAudio REQUIRED)
 
+include_directories(include)
 include_directories(${PROJECT_INCLUDE_DIR})
 include_directories(${RTAUDIO_INCLUDE_DIR})
 include_directories(${PULSEAUDIO_INCLUDE_DIR})
@@ -41,6 +42,24 @@ set(SINE_WAVE_GENERATOR_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/sine_wave_generator.cpp
   )
 
+set(GEN_WAVE_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/gen_wave.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/gen_wave.h
+)
+
+set(SINE_WAVE_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/sine_wave.cpp
+  )
+
+set(GEN_WAVE_FACTORY_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/gen_wave_factory.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/gen_wave_factory.h
+	)
+
+set(GEN_WAVE_EXAMPLE_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/gen_wave_example.cpp
+)
+
 set(PLOT_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/plot_wave.cpp
   )
@@ -56,6 +75,29 @@ set(ADSR_MODIFICATOR_SOURCES
 set(PLAY_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/play_wave.cpp
   )
+
+
+add_library(gen_wave
+	${GEN_WAVE_SOURCES})
+
+add_library(sine_wave
+	${SINE_WAVE_SOURCES})
+
+target_link_libraries(sine_wave
+	gen_wave)
+
+add_library(gen_wave_factory
+	${GEN_WAVE_FACTORY_SOURCES})
+
+target_link_libraries(gen_wave_factory
+	sine_wave)
+
+add_executable(gen_wave_example
+  ${GEN_WAVE_EXAMPLE_SOURCES})
+
+target_link_libraries(gen_wave_example
+	gen_wave_factory
+)
 
 add_executable(rtaudio_example
   ${MAIN_SOURCES})

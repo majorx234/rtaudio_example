@@ -15,22 +15,27 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdio.h>
-#define END 48000
 
-int main(){
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+  unsigned int duration = atoi(argv[1]);
+  unsigned int freq = atoi(argv[2]);
+  const unsigned int sample_rate = 48000;
+  unsigned int end = sample_rate * duration;
   unsigned int n = 0;
-  unsigned int max = END/480;
-  int number = max;
-  bool switcher = true;
-  while (n < END) {    
-    if((n % max) == 0){
-      number = max;
-    }
-    float output = (number/50.0)-1;
-    printf("%f \n",output );
-    number--;
+
+  unsigned int max = sample_rate/freq; //->480
+  float fmax = static_cast<float>(max);
+  float s = 0;
+
+  printf("%d\n",end);
+  while(n < end) {
+    s = -1 * (((n % (max)) / fmax) - 1);
+    printf("%f \n", s);
     n++;
-  } 
+  }
   return 0;
 }

@@ -17,7 +17,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h> /* sin */
+#include <math.h>
 #define _USE_MATH_DEFINES
 
 int main(int argc, char *argv[])
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
   float s = 0;
   printf("%d\n", end);
   while(n < end) {
-    s =  sin((2 * M_PI * freq * n) / sample_rate)  ;
+    s =  sin((2 * M_PI * freq * n) / sample_rate);
     printf("%f\n", s);
     n++;
   }

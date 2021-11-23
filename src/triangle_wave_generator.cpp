@@ -16,24 +16,31 @@
  */
 
 #include <stdio.h>
-#define END 48000
+#include <stdlib.h>
 
-int main() {
-  unsigned int offset = 400;
-  unsigned int n = offset;
-  unsigned int max = END/480;
+int main(int argc, char *argv[]) {
+  float duration = atof(argv[1]);
+  unsigned int freq = atoi(argv[2]);
+  const unsigned int sample_rate = 48000;
+  unsigned int end = static_cast<int>(sample_rate * duration);
+
+  unsigned int max = sample_rate/freq;
   float fmax = static_cast<float>(max);
   float s = 0;
   float factor = 1.0;
-  
-  while(n < END + offset) {
-    //s = ((n % (2*max)) / fmax)-1;
-    if((n % (2 * max)) == 0){
-      factor *= -1.0;
+  int i=0;
+  int n = 0;
+
+  while(i < end) {
+    n = i % (max);
+    if(n < (fmax / 2)) {
+      s= ((2 * n) / fmax) - 0.5;
+    } else {
+      s= -1.0 * ((2 * n) / fmax) + 1.5;      
     }
-    s = factor * (((n % (2 * max)) / fmax) - 1);
-    printf("%f \n", s);
-    n++;
+    float out = 2*s;
+    printf("%f \n", out);
+    i++;
   }
   return 0;
 }
