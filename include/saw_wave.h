@@ -15,17 +15,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
-#include "sine_wave.h"
-#include "saw_wave.h"
-#include "gen_wave_factory.h"
+#ifndef SAW_WAVE_H_
+#define  SAW_WAVE_H_
 
-GenWave* GenWaveFactory::getInstance(std::string wave_form) {
-  GenWave* pWave = nullptr;
-  if(wave_form == "sine") {
-    pWave = new SineWave();
-  }else if (wave_form == "saw") {
-       pWave = new SawWave();
-  }
-  return pWave;
-}
+#include "gen_wave.h"
+
+class SawWave : public GenWave {
+public:
+  SawWave();
+  ~SawWave();
+  void print();      
+};
+
+#endif // SAW_WAVE_H_

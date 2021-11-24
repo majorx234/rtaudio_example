@@ -41,14 +41,15 @@ set(TRIANGLE_WAVE_GENERATOR2_SOURCES
 set(SINE_WAVE_GENERATOR_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/sine_wave_generator.cpp
   )
-
-set(GEN_WAVE_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/gen_wave.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/gen_wave.h
-)
-
+ 
 set(SINE_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/sine_wave.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/include/sine_wave.h
+  )
+
+set(SAW_WAVE_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/saw_wave.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/include/saw_wave.h
   )
 
 set(GEN_WAVE_FACTORY_SOURCES
@@ -79,11 +80,17 @@ set(PLAY_WAVE_SOURCES
 add_library(sine_wave
 	${SINE_WAVE_SOURCES})
 
+add_library(saw_wave
+	${SAW_WAVE_SOURCES})
+
 add_library(gen_wave_factory
 	${GEN_WAVE_FACTORY_SOURCES})
 
 target_link_libraries(gen_wave_factory
 	sine_wave)
+
+target_link_libraries(gen_wave_factory
+	saw_wave)
 
 add_executable(gen_wave_example
   ${GEN_WAVE_EXAMPLE_SOURCES})

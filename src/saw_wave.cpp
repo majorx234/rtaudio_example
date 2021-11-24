@@ -15,17 +15,36 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
-#include "sine_wave.h"
-#include "saw_wave.h"
-#include "gen_wave_factory.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-GenWave* GenWaveFactory::getInstance(std::string wave_form) {
-  GenWave* pWave = nullptr;
-  if(wave_form == "sine") {
-    pWave = new SineWave();
-  }else if (wave_form == "saw") {
-       pWave = new SawWave();
+#include "saw_wave.h"
+
+SawWave::SawWave()
+{
+  unsigned int duration = 1.0;
+  unsigned int freq = 440;
+  const unsigned int sample_rate = 48000;
+  num_samples = static_cast<int>(sample_rate * duration);
+
+  unsigned int max = sample_rate/freq; //->480
+  float fmax = static_cast<float>(max);
+ 
+  values = (float*)malloc(num_samples*sizeof(float));
+  printf("%d\n",num_samples);
+  for(int i =0; i<num_samples;i++) {
+    values[i] = ((i % (max)) / fmax) - 1;
   }
-  return pWave;
+}
+
+SawWave::~SawWave() {
+  if (values) {
+    delete values;
+  }
+}
+
+void SawWave::print() {
+  for(int i = 0; i<num_samples; i++) {
+    printf("%f\n", values[i]); 
+  }
 }
