@@ -18,13 +18,13 @@
 #include <stdio.h>
 #define END 48000
 
-int main(){
+int main() {
   unsigned int n = 0;
   unsigned int max = END/480;
   int number = 0;
   bool switcher = true;
   while (n < END) {    
-    if((n % max) == 0){
+    if((n % max) == 0) {
       if(switcher == true) {
         switcher = false;
       } else {

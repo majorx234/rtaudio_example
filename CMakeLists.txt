@@ -76,15 +76,8 @@ set(PLAY_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/play_wave.cpp
   )
 
-
-add_library(gen_wave
-	${GEN_WAVE_SOURCES})
-
 add_library(sine_wave
 	${SINE_WAVE_SOURCES})
-
-target_link_libraries(sine_wave
-	gen_wave)
 
 add_library(gen_wave_factory
 	${GEN_WAVE_FACTORY_SOURCES})

@@ -28,7 +28,7 @@ int main(int argc, char *argv[]) {
   float fmax = static_cast<float>(max);
   float s = 0;
   float factor = 1.0;
-  int i=0;
+  unsigned int i=0;
   int n = 0;
 
   while(i < end) {
