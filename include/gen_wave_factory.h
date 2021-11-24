@@ -23,7 +23,7 @@
 
 class GenWaveFactory {
 public:
-  static GenWave* getInstance(std::string wave_form);
+  static GenWave* getInstance(std::string wave_form, int freq, float duration);
 };
 
 #endif  // GEN_WAVE_FACTORY_H_

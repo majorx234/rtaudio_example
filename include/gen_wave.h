@@ -25,9 +25,9 @@ public:
   virtual void print() = 0;
 
 protected:
-  int freq;
-  int num_samples;
-  float* values;
+  int freq_;
+  int num_samples_;
+  float* values_;
 };
 
 #endif  // GEN_WAVE_H_

@@ -20,12 +20,12 @@
 #include "saw_wave.h"
 #include "gen_wave_factory.h"
 
-GenWave* GenWaveFactory::getInstance(std::string wave_form) {
+GenWave* GenWaveFactory::getInstance(std::string wave_form, int freq, float duration) {
   GenWave* pWave = nullptr;
   if(wave_form == "sine") {
-    pWave = new SineWave();
+    pWave = new SineWave(freq, duration);
   }else if (wave_form == "saw") {
-       pWave = new SawWave();
+    pWave = new SawWave(freq, duration);
   }
   return pWave;
 }

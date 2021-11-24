@@ -20,31 +20,31 @@
 
 #include "saw_wave.h"
 
-SawWave::SawWave()
+SawWave::SawWave(int freq, float duration)
 {
-  unsigned int duration = 1.0;
-  unsigned int freq = 440;
+  freq_ = freq;
   const unsigned int sample_rate = 48000;
-  num_samples = static_cast<int>(sample_rate * duration);
+  num_samples_ = static_cast<int>(sample_rate * duration);
 
-  unsigned int max = sample_rate/freq; //->480
+  unsigned int max = sample_rate/freq_; //->480
   float fmax = static_cast<float>(max);
  
-  values = (float*)malloc(num_samples*sizeof(float));
-  printf("%d\n",num_samples);
-  for(int i =0; i<num_samples;i++) {
-    values[i] = ((i % (max)) / fmax) - 1;
+  values_ = (float*)malloc(num_samples_*sizeof(float));
+  printf("%d\n",num_samples_);
+  for(int i =0; i<num_samples_;i++) {
+    values_[i] = ((i % (max)) / fmax) - 1;
   }
 }
 
 SawWave::~SawWave() {
-  if (values) {
-    delete values;
+  if (values_) {
+    free(values_);
   }
 }
 
 void SawWave::print() {
-  for(int i = 0; i<num_samples; i++) {
-    printf("%f\n", values[i]); 
+  printf("%d\n", num_samples_);
+  for(int i = 0; i<num_samples_; i++) {
+    printf("%f\n", values_[i]); 
   }
 }

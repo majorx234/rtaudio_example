@@ -22,7 +22,7 @@
 
 class SawWave : public GenWave {
 public:
-  SawWave();
+  SawWave(int freq, float duration);
   ~SawWave();
   void print();      
 };

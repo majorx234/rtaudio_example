@@ -19,7 +19,9 @@
 
 int main(int argc, char *argv[]) {
   std::string wave_form(argv[1]);
-  GenWave* my_wave = GenWaveFactory::getInstance(wave_form);
+  int freq(atoi(argv[2]));
+  float duration(atof(argv[3]));
+  GenWave* my_wave = GenWaveFactory::getInstance(wave_form, freq, duration);
   my_wave->print();
   //delete my_wave;
   return 0;

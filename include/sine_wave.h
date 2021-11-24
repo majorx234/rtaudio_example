@@ -22,7 +22,7 @@
 
 class SineWave : public GenWave {
 public:
-  SineWave();
+  SineWave(int freq, float duration);
   ~SineWave();
   void print();      
 };
