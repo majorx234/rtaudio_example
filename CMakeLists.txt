@@ -8,11 +8,13 @@ set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${PROJECT_SOURCE_DIR}/cmake")
 
 find_package(RtAudio REQUIRED)
 find_package(PulseAudio REQUIRED)
+find_package(SndFile REQUIRED)
 
 include_directories(include)
 include_directories(${PROJECT_INCLUDE_DIR})
 include_directories(${RTAUDIO_INCLUDE_DIR})
 include_directories(${PULSEAUDIO_INCLUDE_DIR})
+include_directories(${SNDFILE_INCLUDE_DIR})
 message("test"${PULSEAUDIO_LIBRARY}" "${PULSEAUDIO_SIMPLE_LIBRARY})
 set(MAIN_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
@@ -41,7 +43,16 @@ set(TRIANGLE_WAVE_GENERATOR2_SOURCES
 set(SINE_WAVE_GENERATOR_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/sine_wave_generator.cpp
   )
- 
+
+set(SAMPLE_WAVE_GENERATOR_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/sample_wave_generator.cpp
+  )
+
+set(GEN_WAVE_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/gen_wave.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/gen_wave.h
+)
+
 set(SINE_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/sine_wave.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/sine_wave.h
@@ -119,6 +130,11 @@ add_executable(triangle_wave_generator2
 
 add_executable(sine_wave_generator
   ${SINE_WAVE_GENERATOR_SOURCES})
+
+add_executable(sample_wave_generator
+  ${SAMPLE_WAVE_GENERATOR_SOURCES})
+
+target_link_libraries(sample_wave_generator PRIVATE ${SndFile_LIBRARIES})
 
 add_executable(plot_wave
   ${PLOT_WAVE_SOURCES})
