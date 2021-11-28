@@ -15,15 +15,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GEN_WAVE_FACTORY_H_
-#define  GEN_WAVE_FACTORY_H_
+#ifndef SAMPLE_WAVE_H
+#define  SAMPLE_WAVE_H
 
 #include "gen_wave.h"
-#include <string>
 
-class GenWaveFactory {
+class SampleWave : public GenWave {
 public:
-  static GenWave* getInstance(std::string wave_form, int freq, float duration, char* filename = nullptr);
+  SampleWave(char* filename);
+  ~SampleWave();
+  void print();      
 };
 
-#endif  // GEN_WAVE_FACTORY_H_
+#endif // SAMPLE_WAVE_H

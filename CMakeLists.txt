@@ -15,7 +15,7 @@ include_directories(${PROJECT_INCLUDE_DIR})
 include_directories(${RTAUDIO_INCLUDE_DIR})
 include_directories(${PULSEAUDIO_INCLUDE_DIR})
 include_directories(${SNDFILE_INCLUDE_DIR})
-message("test"${PULSEAUDIO_LIBRARY}" "${PULSEAUDIO_SIMPLE_LIBRARY})
+
 set(MAIN_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
   )
@@ -68,6 +68,11 @@ set(GEN_WAVE_FACTORY_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/include/gen_wave_factory.h
 	)
 
+set(SAMPLE_WAVE_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/sample_wave.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/sample_wave.h
+	)
+
 set(GEN_WAVE_EXAMPLE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/gen_wave_example.cpp
 )
@@ -87,7 +92,7 @@ set(ADSR_MODIFICATOR_SOURCES
 set(PLAY_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/play_wave.cpp
   )
-
+ 
 add_library(sine_wave
 	${SINE_WAVE_SOURCES})
 
@@ -97,11 +102,17 @@ add_library(saw_wave
 add_library(gen_wave_factory
 	${GEN_WAVE_FACTORY_SOURCES})
 
-target_link_libraries(gen_wave_factory
-	sine_wave)
+add_library(sample_wave
+	${SAMPLE_WAVE_SOURCES})
+
+target_link_libraries(sample_wave
+   PRIVATE ${SndFile_LIBRARIES}
+	)
 
 target_link_libraries(gen_wave_factory
-	saw_wave)
+	sine_wave
+	saw_wave
+	sample_wave)
 
 add_executable(gen_wave_example
   ${GEN_WAVE_EXAMPLE_SOURCES})

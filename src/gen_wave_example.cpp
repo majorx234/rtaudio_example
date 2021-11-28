@@ -19,10 +19,18 @@
 
 int main(int argc, char *argv[]) {
   std::string wave_form(argv[1]);
-  int freq(atoi(argv[2]));
-  float duration(atof(argv[3]));
-  GenWave* my_wave = GenWaveFactory::getInstance(wave_form, freq, duration);
-  my_wave->print();
+  GenWave* my_wave;
+  
+  if(argc == 4 )
+  {
+    int freq(atoi(argv[2]));
+    float duration(atof(argv[3]));
+    my_wave = GenWaveFactory::getInstance(wave_form, freq, duration);
+  } else if (argc == 3) {
+    char* filename = argv[2];
+    my_wave = GenWaveFactory::getInstance(wave_form, 0, 0.0, filename);
+  }
+  my_wave->print(); 
   //delete my_wave;
   return 0;
 }

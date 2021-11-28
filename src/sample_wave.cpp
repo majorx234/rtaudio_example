@@ -15,15 +15,34 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GEN_WAVE_FACTORY_H_
-#define  GEN_WAVE_FACTORY_H_
+#include <stdio.h>
+#include <stdlib.h>
+#include <sndfile.hh>
 
-#include "gen_wave.h"
-#include <string>
+#include "sample_wave.h"
 
-class GenWaveFactory {
-public:
-  static GenWave* getInstance(std::string wave_form, int freq, float duration, char* filename = nullptr);
-};
+SampleWave::SampleWave(char* filename)
+{
+  const unsigned int sample_rate = 48000;
+  float duration = 1.0;
+  freq_ = 0;
+  num_samples_ = static_cast<int>(duration * sample_rate);
+  SndfileHandle wave_file;
+  wave_file = SndfileHandle(filename);
 
-#endif  // GEN_WAVE_FACTORY_H_
+  values_ = reinterpret_cast<float*>(malloc(num_samples_*sizeof(float)));
+  wave_file.readf(values_, num_samples_);
+}
+
+SampleWave::~SampleWave() {
+  if (values_) {
+    free(values_);
+  }
+}
+
+void SampleWave::print() {
+  printf("%d\n", num_samples_);
+  for(int i = 0; i<num_samples_; i++) {
+    printf("%f\n", values_[i]); 
+  }
+}

@@ -18,14 +18,19 @@
 #include <string>
 #include "sine_wave.h"
 #include "saw_wave.h"
+#include "sample_wave.h"
 #include "gen_wave_factory.h"
 
-GenWave* GenWaveFactory::getInstance(std::string wave_form, int freq, float duration) {
+GenWave* GenWaveFactory::getInstance(std::string wave_form, int freq, float duration, char* filename) {
   GenWave* pWave = nullptr;
   if(wave_form == "sine") {
     pWave = new SineWave(freq, duration);
   }else if (wave_form == "saw") {
     pWave = new SawWave(freq, duration);
+  }else if (wave_form == "sample") {
+    pWave = new SampleWave(filename);
+  } else {
+    // todo: Zonk soundwave generieren 
   }
   return pWave;
 }

@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
   */
   float* buffer = reinterpret_cast<float*>(malloc(num_samples * sizeof(float)));
 
-  wave_file.readf(buffer,num_samples);
+  wave_file.readf(buffer, num_samples);
 
   printf("%d\n",num_samples);
   unsigned int i = 0;
@@ -45,6 +45,5 @@ int main(int argc, char *argv[]) {
     i++;
   }
   free(buffer);
-
 }
     
