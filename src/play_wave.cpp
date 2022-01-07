@@ -59,8 +59,8 @@ int playback(float* in_audio, size_t size, char *argv[]) {
   // need a autochoose default device
   // pacmd list-sources | grep -e 'index:' -e device.string -e 'name:'
   // const char *device = "alsa_output.pci-0000_00_1f.3.analog-stereo";
-  // diffrent device
-  const char *device = "alsa_output.pci-0000_00_1b.0.analog-stereo";
+  // diffrent device  (alsa_output.pci-0000_00_1b.0.analog-stereo)
+  const char *device = "alsa_output.pci-0000_00_1f.3.analog-stereo";
   pa_simple *stream = NULL;;
   int error;
   
