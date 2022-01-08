@@ -16,14 +16,22 @@
  */
 
 #include <stdio.h>
-#define END 48000
+#include <stdlib.h>
 
-int main() {
+int main(int argc, char *argv[]) {
+  unsigned int freq = atoi(argv[1]);
+  float duration = atof(argv[2]);
+  const unsigned int sample_rate = 48000;
+
   unsigned int n = 0;
-  unsigned int max = END/480;
+  unsigned int end = duration * sample_rate;
+  float fmax = end/freq;
+  unsigned int max = static_cast<unsigned int>(fmax);
   int number = 0;
   bool switcher = true;
-  while (n < END) {    
+
+  printf("%d\n",end);
+  while (n < end) {    
     if((n % max) == 0) {
       if(switcher == true) {
         switcher = false;

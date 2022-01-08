@@ -19,9 +19,9 @@
 #include <stdlib.h>
 
 int main(int argc, char *argv[]) {
-  float duration = atof(argv[1]);
-  unsigned int freq = atoi(argv[2]);
-  const unsigned int sample_rate = 48000;
+  unsigned int freq = atoi(argv[1]);
+  float duration = atof(argv[2]);
+   const unsigned int sample_rate = 48000;
   unsigned int end = static_cast<int>(sample_rate * duration);
 
   unsigned int max = sample_rate/freq;
@@ -31,6 +31,7 @@ int main(int argc, char *argv[]) {
   unsigned int i=0;
   int n = 0;
 
+  printf("%d\n",end);
   while(i < end) {
     n = i % (max);
     if(n < (fmax / 2)) {

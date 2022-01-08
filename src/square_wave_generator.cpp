@@ -16,15 +16,21 @@
  */
 
 #include <stdio.h>
-#define END 48000
+#include <stdlib.h>
+#define FS 48000
 
-int main() {
+int main(int argc, char *argv[]) {
+  int freq(atoi(argv[1]));
+  float duration(atof(argv[2]));
   unsigned int n = 0;
-  unsigned int max = END/480;
-  float fmax = static_cast<float>(max);
+  int end = FS * duration;
+  float fmax = end/freq;
+  unsigned int max = static_cast<unsigned int>(fmax);
   float s = 1.0f;
+
+  printf("%d",end);
   
-  while(n < END) {
+  while(n < end) {
     if((n % max) == 0) {
       s *= -1.0f;
     }

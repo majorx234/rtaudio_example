@@ -21,8 +21,8 @@
 #define _USE_MATH_DEFINES
 
 int main(int argc, char *argv[]) {
-  float  duration = atof(argv[1]);
-  unsigned int freq  = atoi(argv[2]);
+  unsigned int freq  = atoi(argv[1]);
+  float  duration = atof(argv[2]);
   const unsigned int sample_rate = 48000;
   unsigned int end = static_cast<int>(sample_rate * duration);
   unsigned int n = 0;
