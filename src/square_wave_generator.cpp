@@ -28,10 +28,10 @@ int main(int argc, char *argv[]) {
   unsigned int max = static_cast<unsigned int>(fmax);
   float s = 1.0f;
 
-  printf("%d",end);
+  printf("%d\n",end);
   
   while(n < end) {
-    if((n % max) == 0) {
+    if((n % (max>>1)) == 0) {
       s *= -1.0f;
     }
     printf("%f \n", s);

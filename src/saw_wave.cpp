@@ -30,9 +30,8 @@ SawWave::SawWave(int freq, float duration)
   float fmax = static_cast<float>(max);
  
   values_ = (float*)malloc(num_samples_*sizeof(float));
-  printf("%d\n",num_samples_);
   for(int i =0; i<num_samples_;i++) {
-    values_[i] = ((i % (max)) / fmax) - 1;
+    values_[i] = 2*(((i % (max)) / fmax) - 0.5);
   }
 }
 

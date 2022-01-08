@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 
   printf("%d\n",end);
   while(n < end) {
-    s = ((n % (max)) / fmax) - 1;
+    s = 2*(((n % (max)) / fmax) - 0.5);
     printf("%f \n", s);
     n++;
   }
