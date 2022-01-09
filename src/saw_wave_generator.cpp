@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
   const unsigned int sample_rate = 48000;
   unsigned int end = static_cast<unsigned int>(sample_rate * duration);
   unsigned int n = 0;
-  float fmax= end/freq; //->480
+  float fmax = sample_rate/freq; //->480
 
   unsigned int max = static_cast<unsigned int>(fmax);
   float s = 0;

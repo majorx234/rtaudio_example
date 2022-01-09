@@ -15,25 +15,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
-#include "sine_wave.h"
-#include "saw_wave.h"
-#include "sample_wave.h"
-#include "tri_wave.h"
-#include "gen_wave_factory.h"
+#ifndef TRI_WAVE_H_
+#define TRI_WAVE_H_
 
-GenWave* GenWaveFactory::getInstance(std::string wave_form, int freq, float duration, char* filename) {
-  GenWave* pWave = nullptr;
-  if(wave_form == "sine") {
-    pWave = new SineWave(freq, duration);
-  }else if (wave_form == "saw") {
-    pWave = new SawWave(freq, duration);
-  }else if (wave_form == "tri") {
-    pWave = new TriWave(freq, duration);  
-  }else if (wave_form == "sample") {
-    pWave = new SampleWave(filename);
-  } else {
-    // todo: Zonk soundwave generieren 
-  }
-  return pWave;
-}
+#include "gen_wave.h"
+
+class TriWave : public GenWave {
+public:
+  TriWave(int freq, float duration);
+  ~TriWave();
+  void print();      
+};
+
+
+#endif // TRI_WAVE_H_
