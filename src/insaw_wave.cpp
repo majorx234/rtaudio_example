@@ -15,28 +15,36 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <string>
-#include "sine_wave.h"
-#include "saw_wave.h"
-#include "insaw_wave.h"
-#include "sample_wave.h"
-#include "tri_wave.h"
-#include "gen_wave_factory.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-GenWave* GenWaveFactory::getInstance(std::string wave_form, int freq, float duration, char* filename) {
-  GenWave* pWave = nullptr;
-  if(wave_form == "sine") {
-    pWave = new SineWave(freq, duration);
-  }else if (wave_form == "saw") {
-    pWave = new SawWave(freq, duration);
-  }else if (wave_form == "insaw") {
-    pWave = new InSawWave(freq, duration);  
-  }else if (wave_form == "tri") {
-    pWave = new TriWave(freq, duration);  
-  }else if (wave_form == "sample") {
-    pWave = new SampleWave(filename);
-  } else {
-    // todo: Zonk soundwave generieren 
+#include "insaw_wave.h"
+
+InSawWave::InSawWave(int freq, float duration)
+{
+  freq_ = freq;
+  const unsigned int sample_rate = 48000;
+  num_samples_ = static_cast<int>(sample_rate * duration);
+
+  unsigned int max = sample_rate/freq_; //->480
+  float fmax = static_cast<float>(max);
+  float s = 0;
+  
+  values_ = (float*)malloc(num_samples_*sizeof(float));
+  for(int i =0; i<num_samples_;i++) {
+    values_[i] = -2*(((i % (max)) / fmax) - 0.5);
   }
-  return pWave;
+}
+
+InSawWave::~InSawWave() {
+  if (values_) {
+    free(values_);
+  }
+}
+
+void InSawWave::print() {
+  printf("%d\n", num_samples_);
+  for(int i = 0; i<num_samples_; i++) {
+    printf("%f\n", values_[i]); 
+  }
 }

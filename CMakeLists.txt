@@ -63,6 +63,11 @@ set(SAW_WAVE_SOURCES
 	${CMAKE_CURRENT_SOURCE_DIR}/include/saw_wave.h
   )
 
+set(INSAW_WAVE_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/insaw_wave.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/include/insaw_wave.h
+  )
+
 set(GEN_WAVE_FACTORY_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/gen_wave_factory.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/gen_wave_factory.h
@@ -104,6 +109,9 @@ add_library(sine_wave
 add_library(saw_wave
 	${SAW_WAVE_SOURCES})
 
+add_library(insaw_wave
+	${INSAW_WAVE_SOURCES})
+
 add_library(tri_wave
 	${TRI_WAVE_SOURCES})
 
@@ -121,7 +129,9 @@ target_link_libraries(gen_wave_factory
 	sine_wave
 	saw_wave
 	tri_wave
-	sample_wave)
+	sample_wave
+	insaw_wave
+	)
 
 add_executable(gen_wave_example
   ${GEN_WAVE_EXAMPLE_SOURCES})

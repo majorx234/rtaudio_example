@@ -5,7 +5,9 @@
 - pipe Data from one exe to another
 - use `./gen_wave_example` to generate a wave
   - `./gen_wave_example saw 660.0 2.0` -creates a saw wave with 660hz for 2 seconds
+  - `./gen_wave_example insaw 660.0 3.0` -creates an inverse saw wave with 660hz for 3 seconds
   - `./gen_wave_example sine 440.0 0.5` -creates a sine wave with 440hz for 0.5 seconds
+  - `./gen_wave_example tri 880.0 1.0` -creates a triangle wave with 880hz for 1 seconds
   - `./gen_wave_example sample ../sounds/clack.wav` -play sample
 - other generators:
   - `./inverse_saw_wave_generator 440 1.0`
