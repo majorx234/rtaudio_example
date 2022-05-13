@@ -21,6 +21,7 @@
 #include "insaw_wave.h"
 #include "sample_wave.h"
 #include "tri_wave.h"
+#include "sine_amp_mod_wave.h"
 #include "gen_wave_factory.h"
 
 GenWave* GenWaveFactory::getInstance(std::string wave_form, int freq, float duration, char* filename) {
@@ -35,6 +36,8 @@ GenWave* GenWaveFactory::getInstance(std::string wave_form, int freq, float dura
     pWave = new TriWave(freq, duration);  
   }else if (wave_form == "sample") {
     pWave = new SampleWave(filename);
+  } else if(wave_form == "sine_amp_mod") {
+    pWave = new SineAmpModWave(freq, duration,10,0);
   } else {
     // todo: Zonk soundwave generieren 
   }
