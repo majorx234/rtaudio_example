@@ -29,13 +29,8 @@ SineAmpModWave::SineAmpModWave(int freq, float duration, int freq_amp, int offse
   freq_ = freq;
   num_samples_ = static_cast<int>(duration * sample_rate);
   values_ = (float*)malloc(num_samples_*sizeof(float));
-  /*
-  for(int i = 0;i<num_samples_;i++)
-  {
-    values_[i] =  sin((2 * M_PI * freq_ * i) / sample_rate)  ;
-    }*/
+
   for (int i =  offset; i < num_samples_ + offset; i++) {
-    //values_[i-offset] =  sin(2 * M_PI * freq_amp * i) * sin((2 * M_PI * freq * i) / sample_rate);
     values_[i-offset] =  sin((2 * M_PI * freq_amp * i)/ sample_rate) * sin((2 * M_PI * freq * i) / sample_rate);
   }
 }
