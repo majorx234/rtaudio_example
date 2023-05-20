@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(rtaudio_example
-  DESCRIPTION "a example to learn rtaudio"
+  DESCRIPTION "a example to learn rtaudio_cpp"
   LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -19,6 +19,11 @@ include_directories(${SNDFILE_INCLUDE_DIR})
 set(MAIN_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
   )
+
+set(RTAUDIO_CPP_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/rtaudio.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/rtaudio.hpp
+	)
 
 set(SAW_WAVE_GENERATOR_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/saw_wave_generator.cpp
@@ -108,7 +113,16 @@ set(ADSR_MODIFICATOR_SOURCES
 set(PLAY_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/play_wave.cpp
   )
- 
+
+add_library(rtaudio_cpp)
+target_sources(rtaudio_cpp
+	PRIVATE
+	${RTAUDIO_CPP_SOURCES}
+)
+target_include_directories(rtaudio_cpp
+	PRIVATE
+	include)
+
 add_library(sine_wave
 	${SINE_WAVE_SOURCES})
 
