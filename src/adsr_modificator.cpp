@@ -17,36 +17,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <vector>
 
-float* einlesen(size_t* size) {  
-  int i = 0;
-  int num_samples = 0;
-  i = scanf("%d" , &num_samples);
-  float* result = (float*)malloc(num_samples*sizeof(float));
-  int j = 0;
-  float sample = 0;
-  do {
-    i = scanf("%f" , &sample);
-    if(i!=EOF)
-    {
-      result[j] = sample; 
-      j++;
-    }
-    // Einfügen! abbruch wenn speicher voll
-  } while (i != EOF);
-  *size = num_samples;
-  return result;
-}
-
-int ausgeben(float* in_audio, size_t size) {
-  unsigned int n = 0;
-  printf("%d\n", size);
-  while(n < size) {
-    printf("%f\n", in_audio[n]);
-    n++;
-  }
-  return 0;
-}
+#include "rtaudio.hpp"
 
 float* generate_adsr_modificator(size_t size, float ta, float td, float ts, float tr) {
   float* result = (float*)malloc(size * sizeof(float));
@@ -87,31 +60,26 @@ float* generate_adsr_modificator(size_t size, float ta, float td, float ts, floa
   return result;
 }
 
-float* adsr_multiplication(float* in_audio, float* adsr_modification, size_t size) {
-  float* result = (float*)malloc(size * sizeof(float));
+std::vector<float> adsr_multiplication(std::vector<float> &in_audio, float* adsr_modification, size_t size) {
+  std::vector<float> result{};
   int n = 0;
   while(n < size){
-    result[n] = in_audio[n] * adsr_modification[n];
+    result.push_back(in_audio[n] * adsr_modification[n]);
     n++;
   }
   return result;
 }
 
-
-int main(int argc, char *argv[])
-{
-  size_t size = 0;
-  float* in_audio = einlesen(&size);
+int main(int argc, char *argv[]) {
+  std::vector<float> in_audio = read_data();
+  size_t size = in_audio.size();
   float ta = 0.05f;
   float td = 0.25f;
   float ts = 0.6f;
   float tr = 0.1f;
   float* adsr_modification = generate_adsr_modificator(size, ta, td, ts, tr);
-  unsigned int duration = size/48000;
-  float* adsr_multiplication_result = adsr_multiplication(in_audio, adsr_modification, size);
-  ausgeben(adsr_multiplication_result, size);
-  delete in_audio;
+  std::vector<float> adsr_multiplication_result = adsr_multiplication(in_audio, adsr_modification, size);
+  write_data(adsr_multiplication_result);
   delete adsr_modification;
-  delete adsr_multiplication_result;
   return 0;
 }
