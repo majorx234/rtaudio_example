@@ -22,8 +22,9 @@
 #include <cstdio>
 #include <cstdlib>
 #include <string>
+#include <vector>
 
-
+#include "rtaudio.hpp"
 // #include <pulse/rtclock.h> // zukunftslaura und marc werden sich freuen
 #define BUFSIZE 1000
 //1024
@@ -33,27 +34,6 @@ pa_sample_spec sample_spec = {
     .rate = 48000,
     .channels = 1
 };
-
-float* einlesen(size_t* size) {  
-  int i = 0;
-  int num_samples = 0;
-  i = scanf("%d" , &num_samples);
-  float* result = (float*)malloc(num_samples*sizeof(float));
-  int j = 0;
-  float sample = 0;
-  do {
-    i = scanf("%f" , &sample);
-    if(i!=EOF)
-    {
-      result[j] = sample; 
-      j++;
-    }
-    // Einfügen! abbruch wenn speicher voll
-  } while ((i != EOF) && (j<num_samples));
-  printf("j: %d samples\n",j );
-  *size = num_samples;
-  return result;
-}
 
 int playback(float* in_audio, size_t size, char *argv[]) {
   // need a autochoose default device
@@ -85,9 +65,10 @@ int main(int argc, char *argv[])
   //float* data = (float*)malloc(48000*sizeof(float));
   //memset(data,0 ,48000*sizeof(float));
   size_t size = 0;
-  float* data = einlesen(&size);
+  //float* data = einlesen(&size);
+  std::vector samples = read_data();
   /* do sth with data */
-  playback(data, size, argv);
-  delete data;
+  playback(samples.data(), size, argv);
+  //  delete data;
   return 0;
 }

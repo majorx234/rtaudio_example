@@ -196,13 +196,32 @@ add_executable(plot_wave
 add_executable(plot2_wave
   ${PLOT2_WAVE_SOURCES})
 
-add_executable(adsr_modificator
-  ${ADSR_MODIFICATOR_SOURCES})
+add_executable(adsr_modificator)
+target_sources(adsr_modificator
+	PRIVATE
+  ${ADSR_MODIFICATOR_SOURCES}
+)
+target_include_directories(adsr_modificator
+	PRIVATE
+	include)
+target_link_libraries(adsr_modificator
+	rtaudio_cpp
+)
 
-add_executable(play_wave
-  ${PLAY_WAVE_SOURCES})
+add_executable(play_wave)
+target_sources(play_wave
+	PRIVATE
+  ${PLAY_WAVE_SOURCES}
+)
+target_include_directories(play_wave
+	PRIVATE
+	include)
+target_link_libraries(play_wave
+	rtaudio_cpp
+	${PULSEAUDIO_LIBRARY}
+	${PULSEAUDIO_SIMPLE_LIBRARY}
+)
+
 
 target_link_libraries(rtaudio_example PRIVATE ${RTAUDIO_LIBRARIES})
-target_link_libraries(play_wave PRIVATE
-	${PULSEAUDIO_LIBRARY}
-	${PULSEAUDIO_SIMPLE_LIBRARY})
+
