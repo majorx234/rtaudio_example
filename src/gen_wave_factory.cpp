@@ -16,13 +16,13 @@
  */
 
 #include <string>
-#include "sine_wave.h"
-#include "saw_wave.h"
-#include "insaw_wave.h"
-#include "sample_wave.h"
-#include "tri_wave.h"
-#include "sine_amp_mod_wave.h"
-#include "gen_wave_factory.h"
+#include "sine_wave.hpp"
+#include "saw_wave.hpp"
+#include "insaw_wave.hpp"
+#include "sample_wave.hpp"
+#include "tri_wave.hpp"
+#include "sine_amp_mod_wave.hpp"
+#include "gen_wave_factory.hpp"
 
 GenWave* GenWaveFactory::getInstance(std::string wave_form, int freq, float duration, char* filename) {
   GenWave* pWave = nullptr;

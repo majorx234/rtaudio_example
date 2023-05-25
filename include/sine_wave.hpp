@@ -15,16 +15,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SAW_WAVE_H_
-#define  SAW_WAVE_H_
+#ifndef SINE_WAVE_HPP_
+#define  SINE_WAVE_HPP_
 
-#include "gen_wave.h"
+#include "gen_wave.hpp"
 
-class SawWave : public GenWave {
+class SineWave : public GenWave {
 public:
-  SawWave(int freq, float duration);
-  ~SawWave();
+  SineWave(int freq, float duration);
+  ~SineWave();
   void print();      
 };
 
-#endif // SAW_WAVE_H_
+#endif // SINE_WAVE_HPP_

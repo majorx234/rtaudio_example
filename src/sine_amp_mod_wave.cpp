@@ -20,30 +20,24 @@
 #include <math.h>
 #define _USE_MATH_DEFINES
 
-#include "sine_amp_mod_wave.h"
+#include "rtaudio.hpp"
+#include "sine_amp_mod_wave.hpp"
 
 SineAmpModWave::SineAmpModWave(int freq, float duration, int freq_amp, int offset)
 {
   const unsigned int sample_rate = 48000;
 
   freq_ = freq;
-  num_samples_ = static_cast<int>(duration * sample_rate);
-  values_ = (float*)malloc(num_samples_*sizeof(float));
+  int num_samples_ = static_cast<int>(duration * sample_rate);
 
   for (int i =  offset; i < num_samples_ + offset; i++) {
-    values_[i-offset] =  sin((2 * M_PI * freq_amp * i)/ sample_rate) * sin((2 * M_PI * freq * i) / sample_rate);
+    values_.push_back(sin((2.0 * M_PI * freq_amp * i)/ sample_rate) * sin((2 * M_PI * freq * i) / sample_rate));
   }
 }
 
 SineAmpModWave::~SineAmpModWave() {
-  if (values_) {
-    free(values_);
-  }
 }
 
 void SineAmpModWave::print() {
-  printf("%d\n", num_samples_);
-  for(int i = 0; i<num_samples_; i++) {
-    printf("%f\n", values_[i]); 
-  }
+  write_data(values_);
 }

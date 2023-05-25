@@ -55,42 +55,42 @@ set(SAMPLE_WAVE_GENERATOR_SOURCES
 
 set(GEN_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/gen_wave.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/gen_wave.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/gen_wave.hpp
 )
 
 set(SINE_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/sine_wave.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/include/sine_wave.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/sine_wave.hpp
   )
 
 set(SAW_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/saw_wave.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/include/saw_wave.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/saw_wave.hpp
   )
 
 set(INSAW_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/insaw_wave.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/include/insaw_wave.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/insaw_wave.hpp
   )
 
 set(GEN_WAVE_FACTORY_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/gen_wave_factory.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/gen_wave_factory.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/gen_wave_factory.hpp
 	)
 
 set(SAMPLE_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/sample_wave.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/sample_wave.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/sample_wave.hpp
 	)
 
 set(TRI_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/tri_wave.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/tri_wave.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/tri_wave.hpp
 	)
 
 set(SINE_AMP_MOD_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/sine_amp_mod_wave.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/include/sine_amp_mod_wave.h
+	${CMAKE_CURRENT_SOURCE_DIR}/include/sine_amp_mod_wave.hpp
   )
 
 
@@ -121,33 +121,86 @@ target_sources(rtaudio_cpp
 )
 target_include_directories(rtaudio_cpp
 	PRIVATE
-	include)
+	include
+)
 
-add_library(sine_wave
-	${SINE_WAVE_SOURCES})
+add_library(sine_wave)
+target_sources(sine_wave
+	PRIVATE
+	${SINE_WAVE_SOURCES}
+)
+target_include_directories(sine_wave
+	PRIVATE
+	include
+)
+target_link_libraries(sine_wave
+	rtaudio_cpp
+)
 
-add_library(saw_wave
-	${SAW_WAVE_SOURCES})
+add_library(saw_wave)
+target_sources(saw_wave
+	PRIVATE
+	${SAW_WAVE_SOURCES}
+)
+target_include_directories(saw_wave
+	PRIVATE
+	include
+)
+target_link_libraries(saw_wave
+	rtaudio_cpp
+)
 
-add_library(insaw_wave
-	${INSAW_WAVE_SOURCES})
+add_library(insaw_wave)
+target_sources(insaw_wave
+	PRIVATE
+	${INSAW_WAVE_SOURCES}
+)
+target_include_directories(insaw_wave
+	PRIVATE
+	include
+)
 
-add_library(tri_wave
-	${TRI_WAVE_SOURCES})
+add_library(tri_wave)
+target_sources(tri_wave
+	PRIVATE
+	${TRI_WAVE_SOURCES}
+)
+target_include_directories(tri_wave
+	PRIVATE
+	include
+)
 
-add_library(gen_wave_factory
-	${GEN_WAVE_FACTORY_SOURCES})
-
-add_library(sample_wave
+add_library(sample_wave)
+target_sources(sample_wave
+	PRIVATE
 	${SAMPLE_WAVE_SOURCES})
-
-add_library(sine_amp_mod_wave
-	${SINE_AMP_MOD_WAVE_SOURCES})
-
+target_include_directories(sample_wave
+	PRIVATE
+	include
+)
 target_link_libraries(sample_wave
    PRIVATE ${SndFile_LIBRARIES}
 	)
 
+add_library(sine_amp_mod_wave)
+target_sources(sine_amp_mod_wave
+	PRIVATE
+	${SINE_AMP_MOD_WAVE_SOURCES}
+)
+target_include_directories(sine_amp_mod_wave
+	PRIVATE
+	include
+)
+
+add_library(gen_wave_factory)
+target_sources(gen_wave_factory
+	PRIVATE
+	${GEN_WAVE_FACTORY_SOURCES}
+)
+target_include_directories(gen_wave_factory
+	PRIVATE
+	include
+)
 target_link_libraries(gen_wave_factory
 	sine_wave
 	saw_wave
@@ -157,15 +210,28 @@ target_link_libraries(gen_wave_factory
 	sine_amp_mod_wave
 	)
 
-add_executable(gen_wave_example
-  ${GEN_WAVE_EXAMPLE_SOURCES})
-
+add_executable(gen_wave_example)
+target_sources(gen_wave_example
+	PRIVATE
+  ${GEN_WAVE_EXAMPLE_SOURCES}
+)
+target_include_directories(gen_wave_factory
+	PRIVATE
+	include
+)
 target_link_libraries(gen_wave_example
 	gen_wave_factory
 )
 
-add_executable(rtaudio_example
-  ${MAIN_SOURCES})
+add_executable(rtaudio_example)
+target_sources(rtaudio_example
+	PRIVATE
+  ${MAIN_SOURCES}
+)
+target_include_directories(rtaudio_example
+	PRIVATE
+	include
+)	
 
 add_executable(saw_wave_generator
   ${SAW_WAVE_GENERATOR_SOURCES})

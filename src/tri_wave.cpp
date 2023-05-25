@@ -18,21 +18,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "tri_wave.h"
+#include "rtaudio.hpp"
+#include "tri_wave.hpp"
 
 TriWave::TriWave(int freq, float duration)
 {
   freq_ = freq;
   const unsigned int sample_rate = 48000;
-  num_samples_ = static_cast<int>(sample_rate * duration);
+  int num_samples_ = static_cast<int>(sample_rate * duration);
 
   unsigned int max = sample_rate/freq_; //->480
   float fmax = static_cast<float>(max);
- 
-  values_ = (float*)malloc(num_samples_*sizeof(float));
-  //for(int i =0; i<num_samples_;i++) {
-  //  values_[i] = 2*(((i % (max)) / fmax) - 0.5);
-  //}
   
   for(int i =0; i<num_samples_;i++) {
     float s = 0.0f;
@@ -42,20 +38,14 @@ TriWave::TriWave(int freq, float duration)
     } else {
       s= -1.0 * ((2 * n) / fmax) + 1.5;      
     }
-    values_[i] = 2*s;
+    values_.push_back(2*s);
     i++;
   }
 }
 
 TriWave::~TriWave() {
-  if (values_) {
-    free(values_);
-  }
 }
 
 void TriWave::print() {
-  printf("%d\n", num_samples_);
-  for(int i = 0; i<num_samples_; i++) {
-    printf("%f\n", values_[i]); 
-  }
+  write_data(values_);
 }

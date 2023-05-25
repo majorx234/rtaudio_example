@@ -15,16 +15,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INSAW_WAVE_H_
-#define  INSAW_WAVE_H_
+#ifndef SAMPLE_WAVE_HPP
+#define  SAMPLE_WAVE_HPP
 
-#include "gen_wave.h"
+#include "gen_wave.hpp"
 
-class InSawWave : public GenWave {
+class SampleWave : public GenWave {
 public:
-  InSawWave(int freq, float duration);
-  ~InSawWave();
+  SampleWave(char* filename);
+  ~SampleWave();
   void print();      
 };
 
-#endif // INSAW_WAVE_H_
+#endif // SAMPLE_WAVE_HPP

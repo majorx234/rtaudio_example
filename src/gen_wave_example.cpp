@@ -15,7 +15,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "gen_wave_factory.h"
+#include "gen_wave_factory.hpp"
 
 int main(int argc, char *argv[]) {
   std::string wave_form(argv[1]);

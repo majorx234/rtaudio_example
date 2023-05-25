@@ -20,30 +20,24 @@
 #include <math.h>
 #define _USE_MATH_DEFINES
 
-#include "sine_wave.h"
+#include "rtaudio.hpp"
+#include "sine_wave.hpp"
 
 SineWave::SineWave(int freq, float duration)
 {
   const unsigned int sample_rate = 48000;
 
   freq_ = freq;
-  num_samples_ = static_cast<int>(duration * sample_rate);
-  values_ = (float*)malloc(num_samples_*sizeof(float));
+  int num_samples_ = static_cast<int>(duration * sample_rate);
   for(int i = 0;i<num_samples_;i++)
   {
-    values_[i] =  sin((2 * M_PI * freq_ * i) / sample_rate)  ;
+    values_.push_back(sin((2.0 * M_PI * freq_ * i) / sample_rate));
   }
 }
 
 SineWave::~SineWave() {
-  if (values_) {
-    free(values_);
-  }
 }
 
 void SineWave::print() {
-  printf("%d\n", num_samples_);
-  for(int i = 0; i<num_samples_; i++) {
-    printf("%f\n", values_[i]); 
-  }
+  write_data(values_);
 }

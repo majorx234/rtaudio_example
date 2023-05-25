@@ -15,16 +15,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef SINE_AMP_MOD_WAVE_H_
-#define  SINE_AMP_MOD_WAVE_H_
+#ifndef TRI_WAVE_HPP_
+#define TRI_WAVE_HPP_
 
-#include "gen_wave.h"
+#include "gen_wave.hpp"
 
-class SineAmpModWave : public GenWave {
+class TriWave : public GenWave {
 public:
-  SineAmpModWave(int freq, float duration, int frew_amp = 10, int offset = 0);
-  ~SineAmpModWave();
+  TriWave(int freq, float duration);
+  ~TriWave();
   void print();      
 };
 
-#endif // SINE_AMP_MOD_WAVE_H_
+
+#endif // TRI_WAVE_HPP_

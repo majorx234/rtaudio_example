@@ -15,15 +15,19 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GEN_WAVE_FACTORY_H_
-#define  GEN_WAVE_FACTORY_H_
+#ifndef GEN_WAVE_HPP_
+#define GEN_WAVE_HPP_ 
+#include <cstdlib>
+#include <vector>
 
-#include "gen_wave.h"
-#include <string>
-
-class GenWaveFactory {
+class GenWave {
 public:
-  static GenWave* getInstance(std::string wave_form, int freq, float duration, char* filename = nullptr);
+  virtual ~GenWave() = default;
+  virtual void print() = 0;
+
+protected:
+  int freq_;
+  std::vector<float> values_;
 };
 
-#endif  // GEN_WAVE_FACTORY_H_
+#endif  // GEN_WAVE_HPP_

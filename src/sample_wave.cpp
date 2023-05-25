@@ -19,30 +19,25 @@
 #include <stdlib.h>
 #include <sndfile.hh>
 
-#include "sample_wave.h"
+#include "rtaudio.hpp"
+#include "sample_wave.hpp"
 
 SampleWave::SampleWave(char* filename)
 {
   const unsigned int sample_rate = 48000;
   float duration = 1.0;
   freq_ = 0;
-  num_samples_ = static_cast<int>(duration * sample_rate);
+  int num_samples_ = static_cast<int>(duration * sample_rate);
   SndfileHandle wave_file;
   wave_file = SndfileHandle(filename);
 
-  values_ = reinterpret_cast<float*>(malloc(num_samples_*sizeof(float)));
-  wave_file.readf(values_, num_samples_);
+  //values_ = reinterpret_cast<float*>(malloc(num_samples_*sizeof(float)));
+  wave_file.readf(values_.data(), num_samples_);
 }
 
 SampleWave::~SampleWave() {
-  if (values_) {
-    free(values_);
-  }
 }
 
 void SampleWave::print() {
-  printf("%d\n", num_samples_);
-  for(int i = 0; i<num_samples_; i++) {
-    printf("%f\n", values_[i]); 
-  }
+  write_data(values_);
 }

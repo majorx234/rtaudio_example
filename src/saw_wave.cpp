@@ -18,32 +18,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "saw_wave.h"
+#include "rtaudio.hpp"
+#include "saw_wave.hpp"
 
 SawWave::SawWave(int freq, float duration)
 {
   freq_ = freq;
   const unsigned int sample_rate = 48000;
-  num_samples_ = static_cast<int>(sample_rate * duration);
+  int num_samples_ = static_cast<int>(sample_rate * duration);
 
   unsigned int max = sample_rate/freq_; //->480
   float fmax = static_cast<float>(max);
  
-  values_ = (float*)malloc(num_samples_*sizeof(float));
   for(int i =0; i<num_samples_;i++) {
-    values_[i] = 2*(((i % (max)) / fmax) - 0.5);
+    values_.push_back(2.0 * (((i % (max)) / fmax) - 0.5));
   }
 }
 
 SawWave::~SawWave() {
-  if (values_) {
-    free(values_);
-  }
 }
 
 void SawWave::print() {
-  printf("%d\n", num_samples_);
-  for(int i = 0; i<num_samples_; i++) {
-    printf("%f\n", values_[i]); 
-  }
+  write_data(values_);
 }

@@ -15,19 +15,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef GEN_WAVE_H_
-#define GEN_WAVE_H_ 
-#include <cstdlib>
+#ifndef SAW_WAVE_HPP_
+#define  SAW_WAVE_HPP_
 
-class GenWave {
+#include "gen_wave.hpp"
+
+class SawWave : public GenWave {
 public:
-  virtual ~GenWave() = default;
-  virtual void print() = 0;
-
-protected:
-  int freq_;
-  int num_samples_;
-  float* values_;
+  SawWave(int freq, float duration);
+  ~SawWave();
+  void print();      
 };
 
-#endif  // GEN_WAVE_H_
+#endif // SAW_WAVE_HPP_
