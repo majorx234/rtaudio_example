@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
   //float* data = einlesen(&size);
   std::vector samples = read_data();
   /* do sth with data */
-  playback(samples.data(), size, argv);
+  playback(samples.data(), samples.size(), argv);
   //  delete data;
   return 0;
 }
