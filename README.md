@@ -20,19 +20,22 @@
 - sinks:
   - `play_wave`
   - `plot_wav`
-  - `plot_wave2`
+  - `plot2_wave`
 
-## examples:
+## Examples:
 - play a wav
 ```bash
 ./gen_wave_example saw 440 1.0 |./adsr_modificator|./play_wave
 ```
 - plot a wav via GNU Plot
 ```bash
-./gen_wave_example sine 440.0 0.1 |./adsr_modificator|gnuplot -p -e "set xrange[1:4800]; plot '-' "
+./gen_wave_example sine 440.0 0.1 |./adsr_modificator|gnuplot -p -e "set xrange[0:4800]; plot '-' "
 ```
 - use command line plot:
 ```bash
 ./gen_wave_example saw 440 1.0 |./adsr_modificator|./plot_wave
 ```
 
+## History
+- 20230526 - Version 1.0.0
+  - data between nodes are now send without size information (pure samples)
