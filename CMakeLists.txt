@@ -21,97 +21,92 @@ set(MAIN_SOURCES
   )
 
 set(RTAUDIO_CPP_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/rtaudio.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/rtaudio/rtaudio.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/rtaudio.hpp
 	)
 
 set(SAW_WAVE_GENERATOR_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/saw_wave_generator.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/saw_wave_generator/saw_wave_generator.cpp
   )
 
 set(SQUARE_WAVE_GENERATOR_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/square_wave_generator.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/square_wave_generator/square_wave_generator.cpp
   )
 
 set(INVERSE_SAW_WAVE_GENERATOR_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/inverse_saw_wave_generator.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/inverse_saw_wave_generator/inverse_saw_wave_generator.cpp
   )
 
 set(TRIANGLE_WAVE_GENERATOR_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/triangle_wave_generator.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/triangle_wave_generator/triangle_wave_generator.cpp
   )
 
 set(TRIANGLE_WAVE_GENERATOR2_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/triangle_wave_generator2.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/triangle_wave_generator2/triangle_wave_generator2.cpp
   )
 
 set(SINE_WAVE_GENERATOR_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/sine_wave_generator.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/sine_wave_generator/sine_wave_generator.cpp
   )
 
 set(SAMPLE_WAVE_GENERATOR_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/sample_wave_generator.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/sample_wave_generator/sample_wave_generator.cpp
   )
 
-set(GEN_WAVE_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/gen_wave.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/gen_wave.hpp
-)
-
 set(SINE_WAVE_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/sine_wave.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/sine_wave/sine_wave.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/sine_wave.hpp
   )
 
 set(SAW_WAVE_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/saw_wave.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/saw_wave/saw_wave.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/saw_wave.hpp
   )
 
 set(INSAW_WAVE_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/insaw_wave.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/insaw_wave/insaw_wave.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/insaw_wave.hpp
   )
 
 set(GEN_WAVE_FACTORY_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/gen_wave_factory.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/gen_wave_factory/gen_wave_factory.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/gen_wave_factory.hpp
 	)
 
 set(SAMPLE_WAVE_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/sample_wave.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/sample_wave/sample_wave.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/sample_wave.hpp
 	)
 
 set(TRI_WAVE_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/tri_wave.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/tri_wave/tri_wave.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/include/tri_wave.hpp
 	)
 
 set(SINE_AMP_MOD_WAVE_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/sine_amp_mod_wave.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/sine_amp_mod_wave/sine_amp_mod_wave.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/sine_amp_mod_wave.hpp
   )
 
 
 set(GEN_WAVE_EXAMPLE_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/gen_wave_example.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/gen_wave_example/gen_wave_example.cpp
 )
 
 set(PLOT_WAVE_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/plot_wave.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/plot_wave/plot_wave.cpp
   )
 
 set(PLOT2_WAVE_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/plot2_wave.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/plot2_wave/plot2_wave.cpp
   )
 
 set(ADSR_MODIFICATOR_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/adsr_modificator.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/adsr_modificator/adsr_modificator.cpp
   )
 
 set(PLAY_WAVE_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/play_wave.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/play_wave/play_wave.cpp
   )
 
 add_library(rtaudio_cpp)
