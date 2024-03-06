@@ -111,122 +111,122 @@ set(PLAY_WAVE_SOURCES
 
 add_library(rtaudio_cpp)
 target_sources(rtaudio_cpp
-	PRIVATE
-	${RTAUDIO_CPP_SOURCES}
+  PRIVATE
+  ${RTAUDIO_CPP_SOURCES}
 )
 target_include_directories(rtaudio_cpp
-	PRIVATE
-	include
+  PRIVATE
+  include
 )
 
 add_library(sine_wave)
 target_sources(sine_wave
-	PRIVATE
-	${SINE_WAVE_SOURCES}
+  PRIVATE
+  ${SINE_WAVE_SOURCES}
 )
 target_include_directories(sine_wave
-	PRIVATE
-	include
+  PRIVATE
+  include
 )
 target_link_libraries(sine_wave
-	rtaudio_cpp
+  rtaudio_cpp
 )
 
 add_library(saw_wave)
 target_sources(saw_wave
-	PRIVATE
-	${SAW_WAVE_SOURCES}
+  PRIVATE
+  ${SAW_WAVE_SOURCES}
 )
 target_include_directories(saw_wave
-	PRIVATE
-	include
+  PRIVATE
+  include
 )
 target_link_libraries(saw_wave
-	rtaudio_cpp
+  rtaudio_cpp
 )
 
 add_library(insaw_wave)
 target_sources(insaw_wave
-	PRIVATE
-	${INSAW_WAVE_SOURCES}
+  PRIVATE
+  ${INSAW_WAVE_SOURCES}
 )
 target_include_directories(insaw_wave
-	PRIVATE
-	include
+  PRIVATE
+  include
 )
 
 add_library(tri_wave)
 target_sources(tri_wave
-	PRIVATE
-	${TRI_WAVE_SOURCES}
+  PRIVATE
+  ${TRI_WAVE_SOURCES}
 )
 target_include_directories(tri_wave
-	PRIVATE
-	include
+  PRIVATE
+  include
 )
 
 add_library(sample_wave)
 target_sources(sample_wave
-	PRIVATE
-	${SAMPLE_WAVE_SOURCES})
+  PRIVATE
+  ${SAMPLE_WAVE_SOURCES})
 target_include_directories(sample_wave
-	PRIVATE
-	include
+  PRIVATE
+  include
 )
 target_link_libraries(sample_wave
-   PRIVATE ${SndFile_LIBRARIES}
-	)
+  PRIVATE ${SndFile_LIBRARIES}
+)
 
 add_library(sine_amp_mod_wave)
 target_sources(sine_amp_mod_wave
-	PRIVATE
-	${SINE_AMP_MOD_WAVE_SOURCES}
+  PRIVATE
+  ${SINE_AMP_MOD_WAVE_SOURCES}
 )
 target_include_directories(sine_amp_mod_wave
-	PRIVATE
-	include
+  PRIVATE
+  include
 )
 
 add_library(gen_wave_factory)
 target_sources(gen_wave_factory
-	PRIVATE
-	${GEN_WAVE_FACTORY_SOURCES}
+  PRIVATE
+  ${GEN_WAVE_FACTORY_SOURCES}
 )
 target_include_directories(gen_wave_factory
-	PRIVATE
-	include
+  PRIVATE
+  include
 )
 target_link_libraries(gen_wave_factory
-	sine_wave
-	saw_wave
-	tri_wave
-	sample_wave
-	insaw_wave
-	sine_amp_mod_wave
-	)
+  sine_wave
+  saw_wave
+  tri_wave
+  sample_wave
+  insaw_wave
+  sine_amp_mod_wave
+)
 
 add_executable(gen_wave_example)
 target_sources(gen_wave_example
-	PRIVATE
+  PRIVATE
   ${GEN_WAVE_EXAMPLE_SOURCES}
 )
 target_include_directories(gen_wave_factory
-	PRIVATE
-	include
+  PRIVATE
+  include
 )
 target_link_libraries(gen_wave_example
-	gen_wave_factory
+  gen_wave_factory
 )
 
 add_executable(rtaudio_example)
 target_sources(rtaudio_example
-	PRIVATE
+  PRIVATE
   ${MAIN_SOURCES}
 )
 target_include_directories(rtaudio_example
-	PRIVATE
-	include
-)	
+  PRIVATE
+  include
+)
 
 add_executable(saw_wave_generator
   ${SAW_WAVE_GENERATOR_SOURCES})
@@ -259,30 +259,27 @@ add_executable(plot2_wave
 
 add_executable(adsr_modificator)
 target_sources(adsr_modificator
-	PRIVATE
+  PRIVATE
   ${ADSR_MODIFICATOR_SOURCES}
 )
 target_include_directories(adsr_modificator
-	PRIVATE
-	include)
+  PRIVATE
+  include)
 target_link_libraries(adsr_modificator
-	rtaudio_cpp
+  rtaudio_cpp
 )
 
 add_executable(play_wave)
 target_sources(play_wave
-	PRIVATE
+  PRIVATE
   ${PLAY_WAVE_SOURCES}
 )
 target_include_directories(play_wave
-	PRIVATE
-	include)
+  PRIVATE
+  include)
 target_link_libraries(play_wave
-	rtaudio_cpp
-	${PULSEAUDIO_LIBRARY}
-	${PULSEAUDIO_SIMPLE_LIBRARY}
+  rtaudio_cpp
+  ${PULSEAUDIO_LIBRARY}
+  ${PULSEAUDIO_SIMPLE_LIBRARY}
 )
-
-
 target_link_libraries(rtaudio_example PRIVATE ${RTAUDIO_LIBRARIES})
-
