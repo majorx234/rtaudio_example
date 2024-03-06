@@ -24,9 +24,10 @@ int main() {
   try {
     audio = new RtAudio();
   }
-  catch (RtAudioError &error) {
+  catch (RtAudioErrorType &error) {
     // Handle the exception here
-    error.printMessage();
+    //error.printMessage();
+    printf("some audio error happens");
   }
 
   // Clean up
