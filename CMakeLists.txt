@@ -174,7 +174,7 @@ target_include_directories(sample_wave
   include
 )
 target_link_libraries(sample_wave
-  PRIVATE ${SndFile_LIBRARIES}
+  PRIVATE SndFile::SndFile
 )
 
 add_library(sine_amp_mod_wave)
@@ -210,7 +210,7 @@ target_sources(gen_wave_example
   PRIVATE
   ${GEN_WAVE_EXAMPLE_SOURCES}
 )
-target_include_directories(gen_wave_factory
+target_include_directories(gen_wave_example
   PRIVATE
   include
 )
@@ -249,7 +249,7 @@ add_executable(sine_wave_generator
 add_executable(sample_wave_generator
   ${SAMPLE_WAVE_GENERATOR_SOURCES})
 
-target_link_libraries(sample_wave_generator PRIVATE ${SndFile_LIBRARIES})
+target_link_libraries(sample_wave_generator PRIVATE SndFile::SndFile)
 
 add_executable(plot_wave
   ${PLOT_WAVE_SOURCES})
