@@ -109,6 +109,10 @@ set(PLAY_WAVE_SOURCES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/play_wave/play_wave.cpp
   )
 
+set(RTPLAY_WAVE_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/rtplay_wave/rtplay_wave.cpp
+  )
+
 add_library(rtaudio_cpp)
 target_sources(rtaudio_cpp
   PRIVATE
@@ -227,6 +231,10 @@ target_include_directories(rtaudio_example
   PRIVATE
   include
 )
+target_link_libraries(rtaudio_example
+  PRIVATE
+  ${RTAUDIO_LIBRARIES}
+)
 
 add_executable(saw_wave_generator
   ${SAW_WAVE_GENERATOR_SOURCES})
@@ -269,17 +277,18 @@ target_link_libraries(adsr_modificator
   rtaudio_cpp
 )
 
-add_executable(play_wave)
-target_sources(play_wave
+add_executable(rtplay_wave)
+target_sources(rtplay_wave
   PRIVATE
-  ${PLAY_WAVE_SOURCES}
+  ${RTPLAY_WAVE_SOURCES}
 )
-target_include_directories(play_wave
+target_include_directories(rtplay_wave
   PRIVATE
-  include)
-target_link_libraries(play_wave
+  include
+  ${RTAUDIO_INCLUDE_DIR}
+)
+target_link_libraries(rtplay_wave
+  PRIVATE
   rtaudio_cpp
-  ${PULSEAUDIO_LIBRARY}
-  ${PULSEAUDIO_SIMPLE_LIBRARY}
+  ${RTAUDIO_LIBRARIES}
 )
-target_link_libraries(rtaudio_example PRIVATE ${RTAUDIO_LIBRARIES})
